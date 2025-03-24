@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager</title>
+    <style>
+        ul{
+            list-style-type: none;
+        }
+       
+    </style>
+
+   
+    <script>
+        let ul=document.createElement("ul");
+       
+        function add(){
+            let data =document.getElementById("task").value;
+            if(data=="")
+        {
+            alert("Input area cannot be empty");
+        }
+        else{
+           
+            let li = document.createElement("li") //created li element dynamically
+            li.textContent=data;
+            ul.appendChild(li);
+            document.body.appendChild(ul);
+            document.body.appendChild(button);
+
+            document.getElementById("task").value =""; // Clear input field
+
+        }
+        
+        }
+        function reset() {
+            ul.textContent="";
+        }
+        
+    </script>
+</head>
+<body>
+    <h2>Task Manager</h2>
+    <input type="text" placeholder="Enter task..." name="" id="task" >
+    <button style="background-color: green;color: white;" onclick="add()">Add task</button>
+    <button style="background-color: red;color: white;" onclick="reset()">Delete all task</button>
+  
+</body>        
