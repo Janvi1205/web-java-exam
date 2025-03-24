@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,45 +6,64 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task Manager</title>
     <style>
-        ul{
+        ul {
             list-style-type: none;
+            padding: 0;
         }
-       
+        li {
+            margin: 5px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #f0f0f0;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        button.delete {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 5px;
+            cursor: pointer;
+            border-radius: 3px;
+        }
     </style>
-
-   
-    <script>
-        let ul=document.createElement("ul");
-       
-        function add(){
-            let data =document.getElementById("task").value;
-            if(data=="")
-        {
-            alert("Input area cannot be empty");
-        }
-        else{
-           
-            let li = document.createElement("li") //created li element dynamically
-            li.textContent=data;
-            ul.appendChild(li);
-            document.body.appendChild(ul);
-            document.body.appendChild(button);
-
-            document.getElementById("task").value =""; // Clear input field
-
-        }
-        
-        }
-        function reset() {
-            ul.textContent="";
-        }
-        
-    </script>
 </head>
+
 <body>
     <h2>Task Manager</h2>
-    <input type="text" placeholder="Enter task..." name="" id="task" >
-    <button style="background-color: green;color: white;" onclick="add()">Add task</button>
-    <button style="background-color: red;color: white;" onclick="reset()">Delete all task</button>
-  
-</body>        
+    <input type="text" placeholder="Enter task..." id="task">
+    <button style="background-color: green; color: white;" onclick="add()">Add task</button>
+    <ul id="taskList"></ul>
+
+    <script>
+        function add() {
+            let data = document.getElementById("task").value;
+            if (data === "") {
+                alert("Input area cannot be empty");
+            } else {
+                let ul = document.getElementById("taskList");
+                let li = document.createElement("li");
+                
+                let taskText = document.createElement("span");
+                taskText.textContent = data;
+                
+                let deleteBtn = document.createElement("button");
+                deleteBtn.textContent = "Delete";
+                deleteBtn.className = "delete";
+                deleteBtn.onclick = function () {
+                    ul.removeChild(li);
+                };
+                
+                li.appendChild(taskText);
+                li.appendChild(deleteBtn);
+                ul.appendChild(li);
+                
+                document.getElementById("task").value = ""; // Clear input field
+            }
+        }
+    </script>
+</body>
+
+</html>
+
